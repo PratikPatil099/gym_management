@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Form</title>
+</head>
+<body>
+    <div class="right">
+        <span style="font-size: xx-large; font-weight: bold; padding: 10%;">Contact Us</span>
+       
+        <form action="">
+            <input type="text" name="first_name" placeholder="Enter name"><br>
+            <input type="text" name="email" placeholder="Enter email"><br>
+            <input type="text" name="phone" placeholder="Enter phone"><br>
+
+            <select id="membership">
+                <option value="" disabled selected>Select a plan</option>
+                <option value="starter">Starter Plan</option>
+                <option value="basic-monthly">Basic Monthly Plan</option>
+                <option value="basic-yearly">Basic Yearly Plan</option>
+                <option value="premium-yearly">Premium Yearly Plan</option>
+            </select><br>
+            <input type="text" id="fees" placeholder="Membership Fees (₹)" readonly>
+        </form>
+    </div>
+
+    <script>
+        // This ensures the DOM is fully loaded before executing the script
+        window.onload = function() {
+            console.log("DOM fully loaded");
+
+            const membershipSelect = document.getElementById('membership');
+
+            if (membershipSelect) {
+                console.log("Membership select found!");
+
+                membershipSelect.addEventListener('change', function() {
+                    const membership = membershipSelect.value;
+                    const feesInput = document.getElementById('fees');
+
+                    // Check if change event is firing
+                    console.log('Selected membership:', membership);
+
+                    // Set the fee based on the selected membership
+                    let fees = '';
+
+                    switch (membership) {
+                        case 'starter':
+                            fees = '200';
+                            break;
+                        case 'basic-monthly':
+                            fees = '3000';
+                            break;
+                        case 'basic-yearly':
+                            fees = '15000';
+                            break;
+                        case 'premium-yearly':
+                            fees = '25000';
+                            break;
+                        default:
+                            fees = '';
+                    }
+
+                    // Set the fees input value
+                    feesInput.value = fees;
+                    console.log('Fees:', fees);  // Debugging info to see if it works
+                });
+            } else {
+                console.error("Membership select element not found!");
+            }
+        };
+    </script>
+</body>
+</html>
+
